@@ -499,7 +499,7 @@ class AuthController extends BuyerController
             "title" => "required|max:255",
             "category_id" => "required",
             "email" => "email",
-            "image" => "required|",
+            "image" => "required",
         ]);
 
         $image_name = "";
@@ -590,6 +590,12 @@ class AuthController extends BuyerController
 
     public function postEditPostAd(Request $request, $id)
     {
+        $this->validate($request, [
+            "title" => "required|max:255",
+            "category_id" => "required",
+            "email" => "email",
+        ]);
+
         $image_name = "";
         $post = PostAdv::findOrFail($id);
         $buyer = Auth::buyer()->user();
@@ -612,7 +618,7 @@ class AuthController extends BuyerController
             "location" => $values['location'],
             "email" => $values['email'],
             "phone" => $values['phone'],
-            "image" => $image_name,
+            "image" => ( $image_name == "" ? $post['image'] : $image_name ),
             "published_on" => Carbon::today()->format('Y-m-d')
         ];
 
