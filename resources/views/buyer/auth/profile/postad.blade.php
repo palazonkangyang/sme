@@ -30,8 +30,7 @@
     				<div class="profile-edit" id="edit">
 
     					<div class="tab-content">
-	    					<h2 class="heading-md">Add New Post Adv</h2>
-	                        <p>Manage Your Account</p>
+	    					<h2 class="heading-md">Add New Post Ads</h2>
 	                        <div class="clearfix"></div>
 	    				</div><!-- end tab-content -->
 
@@ -50,16 +49,16 @@
                                 </div><!-- end box-header -->
 
                                 <div class="box-body" style="padding: 0 20px">
-                                        
+
                                     <div class="form-group {!! $errors->has('title') ? ' has-error' : '' !!}">
                                         <label class="col-md-2 control-label">Post Title:</label>
                                         <div class="col-md-10">
                                             {!! Form::text("title", null, ["class" => "form-control"]) !!}
                                         </div>
-                                        <p class="help-block"></p>
+                                        <p class="help-block">{{ $errors->first("title") }}</p>
                                     </div><!-- end form-group -->
 
-                                    <div class="form-group {!! $errors->has('title') ? ' has-error' : '' !!}">
+                                    <div class="form-group {!! $errors->has('category_id') ? ' has-error' : '' !!}">
                                         <label class="col-md-2 control-label">Category:</label>
                                         <div class="col-md-10">
                                            <select id="category_id" name="category_id" value= class="form-control">
@@ -69,7 +68,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <p class="help-block"></p>
+                                        <p class="help-block">{{ $errors->first("category_id") }}</p>
                                     </div><!-- end form-group -->
 
                                     <div class="form-group {!! $errors->has('email') ? ' has-error' : '' !!}">
@@ -77,7 +76,7 @@
                                         <div class="col-md-10">
                                             {!! Form::text("email", null, ["class" => "form-control"]) !!}
                                         </div>
-                                        <p class="help-block"></p>
+                                        <p class="help-block">{{ $errors->first("email") }}</p>
                                     </div><!-- end form-group -->
 
                                     <div class="form-group {!! $errors->has('phone') ? ' has-error' : '' !!}">
@@ -102,7 +101,7 @@
                                             <input id="fileID" name="image" type="file">
                                         </div>
                                         <div class="col-md-10"><p style="text-align: left;">File size should not be greater than 5 MB</p></div>
-                                        <p class="help-block"></p>
+                                        <p class="help-block">{{ $errors->first("image") }}</p>
                                     </div><!-- end form-group -->
 
                                     <div class="form-group {!! $errors->has('description') ? ' has-error' : '' !!}">
@@ -111,12 +110,12 @@
                                             {!! Form::textarea("description", null, ["class" => "form-control ckeditor"]) !!}
                                         </div>
                                         <p class="help-block"></p>
-                                    </div><!-- end form-group --> 
+                                    </div><!-- end form-group -->
 
                                     <div class="form-group wrap-zone">
                                         <label class="col-md-2 control-label">Multiple upload:</label>
                                         <div class="col-md-10 dropzone" id="fileUpload">
-                                            <div class="dz-message" data-dz-message><span>Drop files here <br/>or Click to Upload</span>
+                                            <div class="dz-message" data-dz-message><span>Drop files here<br/>or Click to Upload</span>
                                             </div>
                                         </div>
                                         <div class="err-file"></div>
@@ -124,7 +123,7 @@
 
                                     <div class="clear-left">
                                         <div class="file-list"></div>
-                                    </div><!-- end clear-left -->               
+                                    </div><!-- end clear-left -->
 
                                 </div><!-- end box-body -->
 
@@ -159,7 +158,7 @@
 
 
 @section('custom-js')
-    
+
     <script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
     <script type="text/javascript" src="{{ URL::asset('packages/dropzone/dist/dropzone.js') }}"></script>
 
@@ -251,6 +250,6 @@
                     return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
                 }
             });
-            
+
     </script>
 @stop

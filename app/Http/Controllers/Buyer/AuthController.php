@@ -54,18 +54,18 @@ class AuthController extends BuyerController
         $this->data["member_count"] = Buyer::where('status','=','1')->count();
         $this->data["posts_count"] = Post::count();
         $this->data["category"] = ServiceCategory::where("status", 1)->get()->all();
-        
+
         foreach($this->data["category"]  as $sserv_cate)
         {
             $sum =Post::where("category_id", $sserv_cate->id)->count();
             $sserv_cate->count =$sum;
-        } 
+        }
         foreach($this->data["supplier"]  as $supp)
         {
             $sum_1 =Post::where("buyer_id", $supp->id)->count();
             $supp->count =$sum_1;
-        } 
-        
+        }
+
         $this->data["posts"] = Post::orderby('created_at','desc')->take(3)->get();
         $this->data["categories"] = ServiceCategory::where("status", 1)->orderBy("service_category")
             ->lists("service_category", "id")
@@ -82,10 +82,10 @@ class AuthController extends BuyerController
         ]);
         $values = Buyer::where("email","=",$request->email)->first();
         if (Auth::buyer()->attempt(array_merge($request->only(["email", "password"], ["status" => 1])), $request->input("remember_token"))) {
-         
-          
+
+
                 return redirect()->route("buyer.index");
-         
+
         } else {
             return redirect()->route("buyer.login")
                 ->with("loginError", "Invalid login credentials. Please try again")
@@ -98,24 +98,24 @@ class AuthController extends BuyerController
         $this->data["category"] = ServiceCategory::where("status", 1)->get()->all();
         $this->addMetaTitle("Login");
         return parent::View("register");
-        
+
     }
 
     public function register_action(StoreRequest $request)
     {
-        
+
         $values = $request->only([
             "name",
             "password",
             "email",
-            
+
         ]);
 
         $values["password"] = bcrypt($values["password"]);
         $values["status"] = '1';
         $buyer = Buyer::create($values);
         $this->data["buyer"] = $buyer;
-   
+
 
         Mail::send("email.admin.buyer.credentials", $this->data, function ($message) use ($buyer) {
             $message->from("info@SME.com", "SME Consultant Hub")->subject("Account credentials for Buyer")->to($buyer->email);
@@ -125,7 +125,7 @@ class AuthController extends BuyerController
             "success" => TRUE,
             "message" => "Buyer has been successfully created."
         ]);
-        
+
     }
     public function getForgetPassword()
     {
@@ -212,7 +212,7 @@ class AuthController extends BuyerController
         $cat_name = ServiceCategory::where("id", $category_id)->pluck('service_category');
         $this->data["supplier"]["category_name"] = $cat_name;
 
-        $this->data["category"] = ServiceCategory::where("status", 1)->get()->all();        
+        $this->data["category"] = ServiceCategory::where("status", 1)->get()->all();
 
         return $this->view("supplierprofile");
     }
@@ -220,12 +220,12 @@ class AuthController extends BuyerController
 
     public function getPackage()
     {
-        
+
         $this->setPageTitle("My Packages");
         $this->setPageSubTitle("");
          $this->data["category"] = ServiceCategory::where("status", 1)->get()->all();
         $this->data["buyer"] = SubscriptionPackage::all();
-       
+
         return $this->view("auth.package.edit");
     }
 
@@ -246,7 +246,7 @@ class AuthController extends BuyerController
         $this->data["buyer"] = Auth::buyer()->user();
 
         $package_id = $this->data["buyer"]["package_id"];
-      
+
         $this->data["packages"] = SubscriptionPackage::where('status','=','1')
                     ->where('subscription_price','!=','0.00')
                     ->where('id', '!=', $package_id)
@@ -256,11 +256,11 @@ class AuthController extends BuyerController
 
         $this->data['current_plan'] = SubscriptionPackage::where('id', '=', $package_id)->get()->all();
 
-    
+
         return $this->view("auth.profile.edit");
     }
 
-    
+
     public function getActiveProfile()
     {
         $this->data["buyer"] = Auth::buyer()->user();
@@ -272,7 +272,7 @@ class AuthController extends BuyerController
         $this->data['my_wishlists'] = WishLists::where('buyer_id', '=', $buyer->id)->count('buyer_id');
         $this->data['my_archives'] = PostAdv::onlyTrashed()->where('buyer_id', '=', $buyer->id)->count('buyer_id');
         $this->data['my_blog'] = Blog::where('user_id', $buyer->id)->count('user_id');
-        
+
         $this->data["category"] = ServiceCategory::where("status", 1)->get()->all();
         $this->data["postad"] = PostAdv::where('buyer_id', '=', $buyer->id)->paginate(10);
 
@@ -280,15 +280,15 @@ class AuthController extends BuyerController
         {
             $cat_name = ServiceCategory::where("id", $post->category_id)->pluck('service_category');
             $post->category_name = $cat_name;
-            $post->published_date = $post["created_at"]->diffForHumans();            
+            $post->published_date = $post["created_at"]->diffForHumans();
         }
 
 
         return $this->view('auth.profile.active');
     }
-    
+
     public function getWishlistProfile()
-    {   
+    {
         $postadv = new PostAdv;
         $results = $postadv->searchPostAds(Input::except('_token'))->paginate(10);
 
@@ -337,7 +337,7 @@ class AuthController extends BuyerController
         ]);
     }
 
-    
+
     public function getArchieveProfile()
     {
         $this->data["buyer"] = Auth::buyer()->user();
@@ -353,7 +353,7 @@ class AuthController extends BuyerController
         $this->setPageTitle("Archieve Ads");
         $this->setPageSubTitle("Archieve Ads Listing");
 
-        $this->data["category"] = ServiceCategory::where("status", 1)->get()->all(); 
+        $this->data["category"] = ServiceCategory::where("status", 1)->get()->all();
 
         $this->data["archives"] = PostAdv::onlyTrashed()
                                     ->where("buyer_id", "=", $buyer->id)
@@ -407,7 +407,7 @@ class AuthController extends BuyerController
         $this->data['my_archives'] = PostAdv::onlyTrashed()->where('buyer_id', '=', $buyer->id)->count('buyer_id');
         $this->data['my_blog'] = Blog::where('user_id', $buyer->id)->count('user_id');
 
-        $this->data["category"] = ServiceCategory::where("status", 1)->get()->all(); 
+        $this->data["category"] = ServiceCategory::where("status", 1)->get()->all();
 
         return $this->view("auth.profile.addblog");
     }
@@ -420,7 +420,7 @@ class AuthController extends BuyerController
         $values = $request->all();
 
         if (isset($values['blog_image']) && $values['blog_image']) {
-            
+
             $blog_image_name = $request->blog_image->getClientOriginalName();
 
             //moving the file to its designated path
@@ -476,7 +476,7 @@ class AuthController extends BuyerController
     public function getAddPostAd()
     {
         $this->data["buyer"] = Auth::buyer()->user();
-        
+
         $buyer = Auth::buyer()->user();
 
         // Lists of Count
@@ -495,14 +495,22 @@ class AuthController extends BuyerController
 
     public function postPostAd(Request $request)
     {
+        $this->validate($request, [
+            "title" => "required|max:255",
+            "category_id" => "required",
+            "email" => "email",
+            "image" => "required|",
+        ]);
+
         $image_name = "";
         $buyer = Auth::buyer()->user();
 
         $values = $request->all();
 
         if (isset($values['image']) && $values['image']) {
-            
+
             $image_name = $request->image->getClientOriginalName();
+
 
             //moving the file to its designated path
             $request->image->move(public_path("uploads/postadv"), $image_name);
@@ -516,7 +524,7 @@ class AuthController extends BuyerController
             "location" => $values['location'],
             "email" => $values['email'],
             "phone" => $values['phone'],
-            "image" => $image_name,           
+            "image" => $image_name,
             "published_on" => Carbon::today()->format('Y-m-d')
         ];
 
@@ -568,11 +576,11 @@ class AuthController extends BuyerController
         $this->data['my_wishlists'] = WishLists::where('buyer_id', '=', $buyer->id)->count('buyer_id');
         $this->data['my_archives'] = PostAdv::onlyTrashed()->where('buyer_id', '=', $buyer->id)->count('buyer_id');
         $this->data['my_blog'] = Blog::where('user_id', $buyer->id)->count('user_id');
-        
+
         $this->setPageTitle("Post Ads");
         $this->setPageSubTitle("Archieve Ads Listing");
         $this->data["category"] = ServiceCategory::where("status", 1)->get()->all();
-        
+
 
         $this->data["postadv"] = PostAdv::findOrFail($id)->toArray();
 
@@ -589,7 +597,7 @@ class AuthController extends BuyerController
         $values = $request->all();
 
         if (isset($values['image']) && $values['image']) {
-            
+
             $image_name = $request->image->getClientOriginalName();
 
             //moving the file to its designated path
@@ -604,7 +612,7 @@ class AuthController extends BuyerController
             "location" => $values['location'],
             "email" => $values['email'],
             "phone" => $values['phone'],
-            "image" => $image_name,           
+            "image" => $image_name,
             "published_on" => Carbon::today()->format('Y-m-d')
         ];
 
@@ -684,11 +692,11 @@ class AuthController extends BuyerController
             "message" => "Post Adv has been successfully deleted."
         ]);
     }
-    
-    
+
+
      public function postSaveProfile(StoresRequest $request)
     {
-        
+
         $buyer = Auth::buyer()->user();
 
         $values = $request->all();
@@ -697,14 +705,14 @@ class AuthController extends BuyerController
             "package_id" => $values['package_id'],
             "plan_expiration" => Carbon::now()->addYear(1)->format('Y-m-d')
         ];
-        
+
         $buyer->update($data);
-       
+
          return redirect()->route("buyer.auth.payment.process", [
             $values['package_id'],
             $buyer->id,
         ]);
-        
+
     }
 
     public function postEditProfile(UpdateRequest $request)
@@ -714,13 +722,13 @@ class AuthController extends BuyerController
         $values = $request->all();
 
         if (isset($values['image']) && $values['image']) {
-            
+
             $user_photo = $request->image->getClientOriginalName();
 
             //moving the file to its designated path
             $request->image->move(public_path("uploads/user_photos"), $user_photo);
         }
-        
+
         /* Remove email */
         unset($values["email"]);
 
@@ -790,13 +798,13 @@ class AuthController extends BuyerController
      public function faqs()
     {
          $this->data["category"] = ServiceCategory::where("status", 1)->get()->all();
-       
+
         $this->data["faqs"] = Faq::where('status','=','1')->get()->all();
         return $this->view("auth.faqs");
     }
-    
+
     public function districts()
-    {   
+    {
         $this->data["buyer"] = Auth::buyer()->user();
         $this->data["category"] = ServiceCategory::where("status", 1)->get()->all();
         $this->data["districts"] = Districts::all();
@@ -806,7 +814,7 @@ class AuthController extends BuyerController
             $sum = PostAdv::where("location", $district->id)->count();
             $district->count = $sum;
         }
-             
+
         return $this->view("districts");
     }
 
@@ -814,16 +822,16 @@ class AuthController extends BuyerController
     {
         $this->data["buyer"] = Auth::buyer()->user();
         $this->data["districts"] = Districts::orderBy('id', 'asc')->take(7)->get();
-        $this->data["all_ads"] = PostAdv::where('location', '=', $id)->count();        
+        $this->data["all_ads"] = PostAdv::where('location', '=', $id)->count();
         $this->data["district_name"] = Districts::where("id", "=", $id)->pluck('district_name');
 
         // Get recent ads
         $this->data["recent_ads"] = PostAdv::orderBy('id', 'desc')->take(5)->get();
 
-        foreach ($this->data["recent_ads"] as $recent_ad) 
+        foreach ($this->data["recent_ads"] as $recent_ad)
         {
             $district_name = Districts::where("id", $recent_ad->location)->pluck('district_name');
-            $recent_ad->district_name = $district_name;    
+            $recent_ad->district_name = $district_name;
         }
 
         // get categories
@@ -849,19 +857,19 @@ class AuthController extends BuyerController
 
         return $this->view("districtsbyid");
     }
-    
+
     public function howitworks()
     {
         $this->data["buyer"] = Auth::buyer()->user();
-        $this->data["category"] = ServiceCategory::where("status", 1)->get()->all();       
-       
+        $this->data["category"] = ServiceCategory::where("status", 1)->get()->all();
+
         return $this->view("howitworks");
     }
 
     public function about()
     {
         $this->data["category"] = ServiceCategory::where("status", 1)->get()->all();
-       
+
         $this->data["items"] = SubscriptionPackage::where('status','=','1')->where('subscription_price','!=','0.00')->orderby('subscription_price','asc')->get()->all();
         $this->data["supplier_count"] = Buyer::where('package_id','!=','4')->count();
         $this->data["member_count"] = Buyer::where('status','=','1')->count();
@@ -870,7 +878,7 @@ class AuthController extends BuyerController
           {
             $item->options = explode(",",$item->options);
             $array_options =[];
-            
+
                 foreach($item->options as $key => $option)
                 {
                     $feature= Feature::where('id','=',$option)->first();
@@ -880,10 +888,10 @@ class AuthController extends BuyerController
                 $options =implode(', ', $array_options);
 
                 $item->options = $array_options;
-           
-              
+
+
           }
-          
+
         return $this->view("auth.about");
     }
 }
