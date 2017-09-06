@@ -14,5 +14,3 @@ public/uploads/*
 config/database.php
 config/app.php
 composer.lock
-composer.lock
-composer.lock
