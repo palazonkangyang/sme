@@ -43,7 +43,7 @@
 
                                 	<h2 class="heading-md">Manage your Name, Contact and Email Addresses.</h2>
                                  	<p>Below are the name and email addresses on file for your account.</p>
-                                 	
+
                                  	<dl class="dl-horizontal">
                                     	<dt><strong>Your name </strong></dt>
 	                                    <dd>
@@ -73,7 +73,7 @@
 	                                       			Supplier
 	                                       		@endif
 	                                    </dd>
-                                    
+
                                  </dl>
                               	</div><!-- end profile-edit -->
 
@@ -84,7 +84,7 @@
 
                                  	<div class="clearfix"></div>
 
-                                 	<form method="post" class="form-horizontal" action="/auth/profile/edit" 
+                                 	<form method="post" class="form-horizontal" action="/auth/profile/edit"
                                       enctype="multipart/form-data">
                                       {!! csrf_field() !!}
 
@@ -121,7 +121,7 @@
 	                                                        </div><!-- end form-group -->
 
                                                     	</div><!-- end col-md-6 -->
-                                                    
+
 
 	                                                    <div class="col-md-12">
 
@@ -219,14 +219,14 @@
 			                                                {!! Html::link(Route("buyer.auth.profile"), "Cancel", ["class" => "btn btn-default pull-left"]) !!}
 			                                                {!! Form::submit("Save", [ "class" => "btn btn-info pull-right" ]) !!}
 			                                            </div><!-- end box-footer -->
-                                                	
+
                                                 	</div><!-- end row -->
 
                                             	</div><!-- end box-body -->
                                         	</div><!-- end box box-primary -->
                                     	</div><!-- end col-md-12 -->
 
-                                   
+
                                 	</div><!-- end row -->
                                 	</form>
 
@@ -237,7 +237,7 @@
                                  	<h2 class="heading-md">Manage your Package Settings</h2>
                                  	<p>Below are the payment options for your account.</p>
                                  	<br>
-                                 
+
                                     {!! Form::open(array('url' => '/auth/profile/save')) !!}
 
                                     @if(count($current_plan))
@@ -257,7 +257,7 @@
                                          <dd>
                                             <p>{{ Carbon\Carbon::parse($date)->format('d M Y')  }}</p>
                                          </dd>
-                                         
+
                                       </dl><!-- end dl-horizontal -->
 
                                     @else
@@ -265,19 +265,19 @@
                                       <dl class="dl-horizontal">
                                          <dt><strong>Current Plan</strong></dt>
                                          <dd>
-                                            <p name="plan">-</p>
+                                            <p name="plan">Free</p>
                                          </dd>
 
                                          <dt><strong>Plan Price </strong></dt>
                                          <dd>
-                                            <p name="plan">-</p>
+                                            <p name="plan">0.00</p>
                                          </dd>
 
                                          <dt><strong>Plan Expiration </strong></dt>
                                          <dd>
                                             <p>-</p>
                                          </dd>
-                                         
+
                                       </dl><!-- end dl-horizontal -->
 
                                     @endif
@@ -289,9 +289,9 @@
                                           	<label>Select Plan You Want To Change<span class="color-red">*</span></label>
 
                                           	<select id="package_id"  name='package_id' value={{ $buyer->package_id }} class="form-control">
-                                            
+
                                              	@foreach($packages as $key=>$package)
-                                                	<option name='package_id' value={{$package->id}}>{{$package->subscription_package}}</option>
+                                                	<option name='package_id' value={{$package->id}}>{{$package->subscription_package}} (SGD {{ $package->subscription_price }})</option>
                                               	@endforeach
 
                                           	</select>
@@ -302,7 +302,7 @@
 
                                     <button class="btn btn-sm btn-default" type="button">Cancel</button>
                                     <button type="submit" class="btn btn-sm btn-theme">Save Changes</button>
-                                    
+
                                  	{!! Form::close() !!}
 
                               	</div><!-- end profile-edit tab-pane fade -->
@@ -312,7 +312,7 @@
                                  	<h2 class="heading-md">Manage your Notifications.</h2>
                                  	<p>Below are the notifications you may manage.</p>
                                  	<br>
-                                 	
+
                                  	<form>
 
                                     <div class="skin-minimal">
@@ -357,7 +357,7 @@
     				</div><!-- end profile-section margin-bottom-20 -->
 
     			</div><!-- end col-md-8 col-sm-12 col-xs-12 -->
-    			
+
     		</div><!-- end row -->
 
     	</div><!-- end container -->

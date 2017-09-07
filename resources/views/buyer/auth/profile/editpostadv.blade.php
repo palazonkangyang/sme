@@ -91,9 +91,15 @@
                                     <div class="form-group {!! $errors->has('location') ? ' has-error' : '' !!}">
                                         <label class="col-md-2 control-label">Location:</label>
                                         <div class="col-md-10">
-                                            {!! Form::text("location", $postadv['location'], ["class" => "form-control"]) !!}
+																					<select id="location" name="location" value= class="form-control">
+																							 @foreach($location as $loc)
+																									 <option name='location' value="{{$loc->id}}" <?php if ($postadv['location'] == $loc->id) echo "selected"; ?>>{{$loc->district_name}}
+																									 </option>
+																							 @endforeach
+																					 </select>
                                         </div>
-                                        <p class="help-block"></p>
+
+                                        <p class="help-block">{{ $errors->first("location") }}</p>
                                     </div><!-- end form-group -->
 
                                     <div class="form-group {!! $errors->has('image') ? ' has-error' : '' !!}">

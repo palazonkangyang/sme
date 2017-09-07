@@ -280,6 +280,7 @@ class AuthController extends BuyerController
         {
             $cat_name = ServiceCategory::where("id", $post->category_id)->pluck('service_category');
             $post->category_name = $cat_name;
+            $post->districts = Districts::where('id',$post->location)->pluck('district_name');
             $post->published_date = $post["created_at"]->diffForHumans();
         }
 
@@ -488,6 +489,7 @@ class AuthController extends BuyerController
         $this->setPageTitle("Post Ads");
         $this->setPageSubTitle("Archieve Ads Listing");
         $this->data["category"] = ServiceCategory::where("status", 1)->get()->all();
+        $this->data["location"] = Districts::get()->all();
 
         return $this->view("auth.profile.postad");
     }
@@ -499,6 +501,7 @@ class AuthController extends BuyerController
             "title" => "required|max:255",
             "category_id" => "required",
             "email" => "email",
+            "location_id" => "required",
             "image" => "required",
         ]);
 
@@ -521,7 +524,7 @@ class AuthController extends BuyerController
             "description" => $values['description'],
             "category_id" => $values['category_id'],
             "buyer_id" => $buyer->id,
-            "location" => $values['location'],
+            "location" => $values['location_id'],
             "email" => $values['email'],
             "phone" => $values['phone'],
             "image" => $image_name,
@@ -580,7 +583,7 @@ class AuthController extends BuyerController
         $this->setPageTitle("Post Ads");
         $this->setPageSubTitle("Archieve Ads Listing");
         $this->data["category"] = ServiceCategory::where("status", 1)->get()->all();
-
+        $this->data["location"] = Districts::get()->all();
 
         $this->data["postadv"] = PostAdv::findOrFail($id)->toArray();
 
@@ -594,6 +597,7 @@ class AuthController extends BuyerController
             "title" => "required|max:255",
             "category_id" => "required",
             "email" => "email",
+            "location" => "required",
         ]);
 
         $image_name = "";
