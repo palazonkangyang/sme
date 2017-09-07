@@ -87,12 +87,17 @@
                                         <p class="help-block"></p>
                                     </div><!-- end form-group -->
 
-                                    <div class="form-group {!! $errors->has('location') ? ' has-error' : '' !!}">
+                                    <div class="form-group {!! $errors->has('location_id') ? ' has-error' : '' !!}">
                                         <label class="col-md-2 control-label">Location:</label>
-                                        <div class="col-md-10">
-                                            {!! Form::text("location", null, ["class" => "form-control"]) !!}
-                                        </div>
-                                        <p class="help-block"></p>
+																				<div class="col-md-10">
+																					 <select id="location_id" name="location_id" value= class="form-control">
+																								@foreach($location as $loc)
+																										<option name='location_id' value="{{$loc->id}}">{{$loc->district_name}}
+																										</option>
+																								@endforeach
+																						</select>
+																				</div>
+                                        <p class="help-block">{{ $errors->first("location_id") }}</p>
                                     </div><!-- end form-group -->
 
                                     <div class="form-group {!! $errors->has('image') ? ' has-error' : '' !!}">
