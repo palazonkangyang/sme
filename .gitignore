@@ -12,3 +12,5 @@ yarn-error.log
 .env
 public/uploads/*
 config/app.php
+config/database.php
+composer.lock
