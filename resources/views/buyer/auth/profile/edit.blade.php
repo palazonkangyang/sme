@@ -265,12 +265,12 @@
                                       <dl class="dl-horizontal">
                                          <dt><strong>Current Plan</strong></dt>
                                          <dd>
-                                            <p name="plan">-</p>
+                                            <p name="plan">Free</p>
                                          </dd>
 
                                          <dt><strong>Plan Price </strong></dt>
                                          <dd>
-                                            <p name="plan">-</p>
+                                            <p name="plan">0.00</p>
                                          </dd>
 
                                          <dt><strong>Plan Expiration </strong></dt>
