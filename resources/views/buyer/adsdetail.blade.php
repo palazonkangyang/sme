@@ -42,7 +42,7 @@
    <div class="main-content-area clearfix">
 
       <section class="section-padding error-page pattern-bgs gray">
-         
+
          <div class="container">
 
             <div class="row">
@@ -84,27 +84,6 @@
                                  </li>
                                  @endforeach
 
-                              @else
-
-                                 <li class="">
-                                    <img src="{{ url('/adforest/images/single-page/1.jpg') }}">
-                                 </li>
-                                 <li>
-                                    <img src="{{ url('/adforest/images/single-page/2.jpg') }}">
-                                 </li>
-                                 <li>
-                                    <img src="{{ url('/adforest/images/single-page/3.jpg') }}">
-                                 </li>
-                                 <li>
-                                    <img src="{{ url('/adforest/images/single-page/4.jpg') }}">
-                                 </li>
-                                 <li>
-                                    <img src="{{ url('/adforest/images/single-page/5.jpg') }}">
-                                 </li>
-                                 <li>
-                                    <img src="{{ url('/adforest/images/single-page/6.jpg') }}">
-                                 </li>
-
                               @endif
 
                            </ul><!-- end slides slide-main -->
@@ -126,27 +105,6 @@
                                     <img src="{{ URL::asset('uploads/final/'. $post_adv_image->file_url) }}">
                                  </li>
                                  @endforeach
-
-                              @else
-
-                                 <li>
-                                    <img src="{{ url('/adforest/images/single-page/1_thumb.jpg') }}">
-                                 </li>
-                                 <li>
-                                    <img src="{{ url('/adforest/images/single-page/2_thumb.jpg') }}">
-                                 </li>
-                                 <li>
-                                    <img src="{{ url('/adforest/images/single-page/3_thumb.jpg') }}">
-                                 </li>
-                                 <li>
-                                    <img src="{{ url('/adforest/images/single-page/4_thumb.jpg') }}">
-                                 </li>
-                                 <li>
-                                    <img src="{{ url('/adforest/images/single-page/5_thumb.jpg') }}">
-                                 </li>
-                                 <li>
-                                    <img src="{{ url('/adforest/images/single-page/6_thumb.jpg') }}">
-                                 </li>
 
                               @endif
 
@@ -191,18 +149,18 @@
                         <div data-target=".report-quote" data-toggle="modal" class="ad-box col-md-4 col-sm-4 col-xs-12">
                            <i class="fa fa-warning"></i> <span class="hidetext">Report</span>
                         </div>
-                        
+
                      </div><!-- end ad-share text-center -->
 
                      <div class="clearfix"></div><!-- end clearfix -->
 
                      <div class="ad-box">
                         <div class="short-features">
-                              
+
                            <div class="heading-panel">
                               <h3 class="main-title text-left">Description</h3>
                            </div><!-- end heading-panel -->
-                            
+
                            <div class="col-sm-4 col-md-4 col-xs-12 no-padding">
                               <span><strong>Email</strong>:</span> {{ $postadv->email }}
                            </div><!-- end col-sm-4 col-md-4 col-xs-12 no-padding -->
@@ -213,9 +171,9 @@
 
                            <div class="col-sm-4 col-md-4 col-xs-12 no-padding">
                            </div><!-- end col-sm-4 col-md-4 col-xs-12 no-padding -->
-                             
+
                         </div><!-- end short-features -->
-                           
+
                         <div class="desc-points">
                            {!! $postadv->description !!}
                         </div><!-- end desc-points -->
@@ -244,14 +202,14 @@
                            <div class="ads-list-archive">
 
                               <div class="col-lg-5 col-md-5 col-sm-5 no-padding">
-                                    
+
                                  <div class="ad-archive-img">
                                     <a href="#">
                                        <div class="ribbon popular"></div>
-                                       <img class="img-responsive" src="{{ URL::asset('uploads/postadv/'. $related_ad->image) }}" alt=""> 
+                                       <img class="img-responsive" src="{{ URL::asset('uploads/postadv/'. $related_ad->image) }}" alt="">
                                     </a>
                                  </div><!-- end ad-archive-img -->
-                                    
+
                               </div><!-- end col-lg-5 col-md-5 col-sm-5 no-padding -->
 
                               <div class="clearfix visible-xs-block"></div><!-- end clearfix visible-xs-block -->
@@ -259,21 +217,21 @@
                               <div class="col-lg-7 col-md-7 col-sm-7 no-padding">
 
                                  <div class="ad-archive-desc">
-                                       
+
                                     <h3>{{ $related_ad->title }}</h3>
-                                       
-                                    <div class="category-title"> 
-                                       <span><a href="#">{{ $related_ad->category_name }}</a></span> 
+
+                                    <div class="category-title">
+                                       <span><a href="#">{{ $related_ad->category_name }}</a></span>
                                     </div><!-- end category-title -->
-                                      
+
                                     <div class="clearfix visible-xs-block"></div><!-- end clearfix visible-xs-block -->
 
                                     <p class="hidden-sm">
                                        Lorem ipsum dolor sit amet, quem convenire interesset ut vix, maiestatis inciderint no, eos in elit dicat.....
                                     </p>
-                                       
+
                                     <ul class="add_info">
-                                          
+
                                        <li>
                                           <div class="custom-tooltip tooltip-effect-4">
 
@@ -282,11 +240,11 @@
                                                 <h4>Call Timings</h4>
                                                 <strong>Monday to Friday</strong> 09.00 AM - 5.30 PM
                                                 <br> <strong>Saturday</strong> 09.00 AM - 5.30 PM
-                                                <br> <strong>Sunday</strong> <span class="label label-success">+65-123-4567</span> 
+                                                <br> <strong>Sunday</strong> <span class="label label-success">+65-123-4567</span>
                                              </div>
                                           </div>
                                        </li>
-                                          
+
                                        <li>
                                           <div class="custom-tooltip tooltip-effect-4">
                                              <span class="tooltip-item"><i class="fa fa-map-marker"></i></span>
@@ -296,16 +254,16 @@
                                              </div>
                                           </div>
                                        </li>
-                                        
+
                                     </ul><!-- end add_info -->
-                                       
+
                                     <div class="clearfix archive-history">
                                        <div class="last-updated">{{ $related_ad->published_date }}</div>
 
-                                       <div class="ad-meta"> 
-                                          <a class="btn save-ad"><i class="fa fa-heart-o"></i> Save Ads.</a> 
+                                       <div class="ad-meta">
+                                          <a class="btn save-ad"><i class="fa fa-heart-o"></i> Save Ads.</a>
                                           <a href="{{ route('buyer.adsdetail', [$related_ad->id]) }}" class="btn btn-success"><i class="fa fa-phone">
-                                          </i> View Details.</a> 
+                                          </i> View Details.</a>
                                        </div><!-- end ad-meta -->
 
                                     </div><!-- end clearfix archive-history -->
@@ -345,7 +303,7 @@
                            <div class="user-photo col-md-4 col-sm-3  col-xs-4">
                               <img src="{{ URL::asset('uploads/postadv/'. $buyer->user_photo) }}" alt="">
                            </div><!-- end user-photo -->
-                           
+
                            <div class="user-information no-padding col-md-8 col-sm-9 col-xs-8">
 
                               <span class="user-name">
@@ -361,13 +319,13 @@
                            <div class="clearfix"></div><!-- end clearfix -->
 
                         </div><!-- end user-info-card -->
-                        
+
                         <div class="ad-listing-meta">
                            <ul>
                               <li>Supplier ID: <span class="color">{{ $buyer->id }}</span></li>
                               <li>Category: <span class="color">{{ $buyer->category_name }}</span></li>
                               <li>Location: <span class="color">{{ $buyer->address }}</span></li>
-                              <li>Ads posted: <span class="color">{{ $buyer->count }}</span></li> 
+                              <li>Ads posted: <span class="color">{{ $buyer->count }}</span></li>
                            </ul>
                         </div>
 
@@ -387,30 +345,30 @@
                               <div class="item">
 
                                  <div class="col-md-12 col-xs-12 col-sm-12 no-padding">
-                                       
+
                                     <div class="category-grid-box">
-                                          
+
                                        <div class="category-grid-img">
                                           <img class="img-responsive" alt="" src="{{ url('/adforest/images/posting/car-3.jpg') }}">
-                                             
+
                                           <div class="user-preview">
-                                             <a href="#"> 
+                                             <a href="#">
                                                 <img src="{{ url('/adforest/images/users/2.jpg') }}" class="avatar avatar-small" alt=""> </a>
                                           </div><!-- end user-preview -->
 
                                           <a href="" class="view-details">View Details</a>
 
                                        </div><!-- end user-preview -->
-                                          
+
                                        <div class="short-description">
 
-                                          <div class="category-title"> 
+                                          <div class="category-title">
                                              <span><a href="#">Cars</a></span>
                                           </div><!-- end category-title -->
-                                             
+
                                           <h3><a title="" href="single-page-listing.html">2017 Honda Civic EX</a></h3>
                                        </div><!-- end short-description -->
-                                    
+
                                        <div class="ad-info">
 
                                           <ul>
@@ -421,7 +379,7 @@
                                        </div><!-- end ad-info -->
 
                                     </div><!-- end category-grid-box -->
-                                      
+
                                  </div><!-- end col-md-12 col-xs-12 col-sm-12 no-padding -->
 
                               </div><!-- end item -->
@@ -429,30 +387,30 @@
                               <div class="item">
 
                                  <div class="col-md-12 col-xs-12 col-sm-12 no-padding">
-                                       
+
                                     <div class="category-grid-box">
-                                          
+
                                        <div class="category-grid-img">
                                           <img class="img-responsive" alt="" src="{{ url('/adforest/images/posting/fur-3.jpg') }}">
-                                             
+
                                           <div class="user-preview">
-                                             <a href="#"> 
+                                             <a href="#">
                                                 <img src="{{ url('/adforest/images/users/2.jpg') }}" class="avatar avatar-small" alt=""> </a>
                                           </div><!-- end user-preview -->
 
                                           <a href="" class="view-details">View Details</a>
 
                                        </div><!-- end user-preview -->
-                                          
+
                                        <div class="short-description">
 
-                                          <div class="category-title"> 
+                                          <div class="category-title">
                                              <span><a href="#">Cameras & Accessories</a></span>
                                           </div><!-- end category-title -->
-                                             
+
                                           <h3><a title="" href="single-page-listing.html">Office Furniture For Sale</a></h3>
                                        </div><!-- end short-description -->
-                                    
+
                                        <div class="ad-info">
 
                                           <ul>
@@ -463,7 +421,7 @@
                                        </div><!-- end ad-info -->
 
                                     </div><!-- end category-grid-box -->
-                                      
+
                                  </div><!-- end col-md-12 col-xs-12 col-sm-12 no-padding -->
 
                               </div><!-- end item -->
@@ -471,30 +429,30 @@
                               <div class="item">
 
                                  <div class="col-md-12 col-xs-12 col-sm-12 no-padding">
-                                       
+
                                     <div class="category-grid-box">
-                                          
+
                                        <div class="category-grid-img">
                                           <img class="img-responsive" alt="" src="{{ url('/adforest/images/posting/mob-6.jpg') }}">
-                                             
+
                                           <div class="user-preview">
-                                             <a href="#"> 
+                                             <a href="#">
                                                 <img src="{{ url('/adforest/images/users/2.jpg') }}" class="avatar avatar-small" alt=""> </a>
                                           </div><!-- end user-preview -->
 
                                           <a href="" class="view-details">View Details</a>
 
                                        </div><!-- end user-preview -->
-                                          
+
                                        <div class="short-description">
 
-                                          <div class="category-title"> 
+                                          <div class="category-title">
                                              <span><a href="#">Cameras & Accessories</a></span>
                                           </div><!-- end category-title -->
-                                             
+
                                           <h3><a title="" href="single-page-listing.html">Sony Xperia Z5</a></h3>
                                        </div><!-- end short-description -->
-                                    
+
                                        <div class="ad-info">
 
                                           <ul>
@@ -505,7 +463,7 @@
                                        </div><!-- end ad-info -->
 
                                     </div><!-- end category-grid-box -->
-                                      
+
                                  </div><!-- end col-md-12 col-xs-12 col-sm-12 no-padding -->
 
                               </div><!-- end item -->
@@ -513,30 +471,30 @@
                               <div class="item">
 
                                  <div class="col-md-12 col-xs-12 col-sm-12 no-padding">
-                                       
+
                                     <div class="category-grid-box">
-                                          
+
                                        <div class="category-grid-img">
                                           <img class="img-responsive" alt="" src="{{ url('/adforest/images/posting/cam-2.jpg') }}">
-                                             
+
                                           <div class="user-preview">
-                                             <a href="#"> 
+                                             <a href="#">
                                                 <img src="{{ url('/adforest/images/users/2.jpg') }}" class="avatar avatar-small" alt=""> </a>
                                           </div><!-- end user-preview -->
 
                                           <a href="" class="view-details">View Details</a>
 
                                        </div><!-- end user-preview -->
-                                          
+
                                        <div class="short-description">
 
-                                          <div class="category-title"> 
+                                          <div class="category-title">
                                              <span><a href="#">Cameras & Accessories</a></span>
                                           </div><!-- end category-title -->
-                                             
+
                                           <h3><a title="" href="single-page-listing.html">Sony Xperia Z5</a></h3>
                                        </div><!-- end short-description -->
-                                    
+
                                        <div class="ad-info">
 
                                           <ul>
@@ -547,7 +505,7 @@
                                        </div><!-- end ad-info -->
 
                                     </div><!-- end category-grid-box -->
-                                      
+
                                  </div><!-- end col-md-12 col-xs-12 col-sm-12 no-padding -->
 
                               </div><!-- end item -->
@@ -555,30 +513,30 @@
                               <div class="item">
 
                                  <div class="col-md-12 col-xs-12 col-sm-12 no-padding">
-                                       
+
                                     <div class="category-grid-box">
-                                          
+
                                        <div class="category-grid-img">
                                           <img class="img-responsive" alt="" src="{{ url('/adforest/images/posting/cam-2.jpg') }}">
-                                             
+
                                           <div class="user-preview">
-                                             <a href="#"> 
+                                             <a href="#">
                                                 <img src="{{ url('/adforest/images/users/2.jpg') }}" class="avatar avatar-small" alt=""> </a>
                                           </div><!-- end user-preview -->
 
                                           <a href="" class="view-details">View Details</a>
 
                                        </div><!-- end user-preview -->
-                                          
+
                                        <div class="short-description">
 
-                                          <div class="category-title"> 
+                                          <div class="category-title">
                                              <span><a href="#">Cameras & Accessories</a></span>
                                           </div><!-- end category-title -->
-                                             
+
                                           <h3><a title="" href="single-page-listing.html">Sony Xperia Z5</a></h3>
                                        </div><!-- end short-description -->
-                                    
+
                                        <div class="ad-info">
 
                                           <ul>
@@ -589,7 +547,7 @@
                                        </div><!-- end ad-info -->
 
                                     </div><!-- end category-grid-box -->
-                                      
+
                                  </div><!-- end col-md-12 col-xs-12 col-sm-12 no-padding -->
 
                               </div><!-- end item -->
@@ -617,7 +575,7 @@
                                        <img src="{{ URL::asset('uploads/postadv/'. $recent_ad->image) }}" alt="">
                                     </a>
                                  </div><!-- end recent-ads-list-image -->
-                                    
+
                                  <div class="recent-ads-list-content">
 
                                     <h3 class="recent-ads-list-title">
@@ -628,9 +586,9 @@
                                        <li><a href="#">{{ $recent_ad->location }}</a></li>
                                     </ul>
                                  </div><!-- end recent-ads-list-content -->
-                                    
+
                               </div><!-- end recent-ads-container -->
-                                 
+
                            </div><!-- end recent-ads-list -->
 
                            @endforeach
@@ -666,5 +624,5 @@
       </section><!-- end section-padding error-page pattern-bgs gray -->
 
    </div><!-- end main-content-area clearfix -->
-   
+
 @endsection

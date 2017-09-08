@@ -629,59 +629,57 @@ class AuthController extends BuyerController
         $post->update($data);
 
         $post_adv_images = PostAdvImages::where("post_adv_id", "=", $id);
-
-        if(isset($post_adv_images))
+        //checking whether there are old images and new uploaded images
+        if(!empty($post_adv_images) && !empty($values['fileurl']))
         {
             $result = $post_adv_images->delete();
 
-            if(!empty($values['fileurl']))
-            {
-                foreach ($values['fileurl'] as $key => $file) {
+            foreach ($values['fileurl'] as $key => $file) {
 
-                    //move the file to final folder
-                    $old_path = 'uploads/tmp/' . $file;
-                    $new_path = 'uploads/final/' . $file;
+                //move the file to final folder
+                $old_path = 'uploads/tmp/' . $file;
+                $new_path = 'uploads/final/' . $file;
 
-                    $upload_success = File::move($old_path, $new_path);
+                $upload_success = File::move($old_path, $new_path);
 
-                    if($upload_success) {
-                        $input = [
-                            'image_type' => $values['mimetype'][$key],
-                            'image_name' => $values['filename'][$key],
-                            'file_url' => $file,
-                            'post_adv_id' => $id
-                        ];
+                if($upload_success) {
+                    $input = [
+                        'image_type' => $values['mimetype'][$key],
+                        'image_name' => $values['filename'][$key],
+                        'file_url' => $file,
+                        'post_adv_id' => $id
+                    ];
 
-                        PostAdvImages::create($input);
-                    }
+                    PostAdvImages::create($input);
                 }
             }
+
         }
 
         else
         {
-            if(!empty($values['fileurl']))
-            {
-                foreach ($values['fileurl'] as $key => $file) {
-
-                    //move the file to final folder
-                    $old_path = 'uploads/tmp/' . $file;
-                    $new_path = 'uploads/final/' . $file;
-
-                    $upload_success = File::move($old_path, $new_path);
-
-                    if($upload_success) {
-                        $input = [
-                            'image_type' => $values['mimetype'][$key],
-                            'image_name' => $values['filename'][$key],
-                            'file_url' => $file,
-                            'post_adv_id' => $post_adv_id
-                        ];
-
-                        PostAdvImages::create($input);
-                    }
-                }
-            }
+            // if(!empty($values['fileurl']))
+            // {
+            //     foreach ($values['fileurl'] as $key => $file) {
+            //
+            //         //move the file to final folder
+            //         $old_path = 'uploads/tmp/' . $file;
+            //         $new_path = 'uploads/final/' . $file;
+            //
+            //         $upload_success = File::move($old_path, $new_path);
+            //
+            //         if($upload_success) {
+            //             $input = [
+            //                 'image_type' => $values['mimetype'][$key],
+            //                 'image_name' => $values['filename'][$key],
+            //                 'file_url' => $file,
+            //                 'post_adv_id' => $post_adv_id
+            //             ];
+            //
+            //             PostAdvImages::create($input);
+            //         }
+            //     }
+            // }
         }
 
         return redirect()->back()->with("alert", [
