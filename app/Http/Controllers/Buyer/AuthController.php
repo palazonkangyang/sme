@@ -656,32 +656,6 @@ class AuthController extends BuyerController
 
         }
 
-        else
-        {
-            // if(!empty($values['fileurl']))
-            // {
-            //     foreach ($values['fileurl'] as $key => $file) {
-            //
-            //         //move the file to final folder
-            //         $old_path = 'uploads/tmp/' . $file;
-            //         $new_path = 'uploads/final/' . $file;
-            //
-            //         $upload_success = File::move($old_path, $new_path);
-            //
-            //         if($upload_success) {
-            //             $input = [
-            //                 'image_type' => $values['mimetype'][$key],
-            //                 'image_name' => $values['filename'][$key],
-            //                 'file_url' => $file,
-            //                 'post_adv_id' => $post_adv_id
-            //             ];
-            //
-            //             PostAdvImages::create($input);
-            //         }
-            //     }
-            // }
-        }
-
         return redirect()->back()->with("alert", [
             "success" => TRUE,
             "message" => "Post Adv has been successfully updated."
